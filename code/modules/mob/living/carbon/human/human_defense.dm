@@ -231,20 +231,12 @@ bullet_act
 					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 					emote("me", TRUE, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [affected.name]!")
 
-		else
-			if (agony_amount > 10)
-				if (is_spy && istype(spy_faction, /datum/faction/german))
-					say("OH GOD THE PAIN", languages.Find(GERMAN))
+	if (agony_amount > 10)
+		if (is_spy && istype(spy_faction, /datum/faction/german))
+			say("OH GOD THE PAIN", languages.Find(GERMAN))
 
-				if (is_spy && istype(spy_faction, /datum/faction/soviet))
-					say("OH GOD THE PAIN", languages.Find(RUSSIAN))
-		else
-			if (agony_amount > 10)
-				if (is_spy && istype(spy_faction, /datum/faction/german))
-					say("OH GOD THE PAIN", languages.Find(GERMAN))
-
-				if (is_spy && istype(spy_faction, /datum/faction/soviet))
-					say("OH GOD THE PAIN", languages.Find(RUSSIAN))
+		if (is_spy && istype(spy_faction, /datum/faction/soviet))
+			say("OH GOD THE PAIN", languages.Find(RUSSIAN))
 	..(stun_amount, agony_amount, def_zone)
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
