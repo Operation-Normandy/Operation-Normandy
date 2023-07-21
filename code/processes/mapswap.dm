@@ -1,4 +1,5 @@
 /process/mapswap
+	var/printedresults = FALSE
 	// map = required players
 	var/list/maps = list(
 		MAP_CITY = 0,
@@ -63,9 +64,11 @@
 	return .
 
 /process/mapswap/proc/swap(var/winner = "City")
-	next_map_title = winner
-	winner = uppertext(winner)
-	if (!maps.Find(winner))
-		winner = maps[1]
-	// there used to be messages here about success and failure but they lie so they're gone - Kachnov
-	processes.python.execute("mapswap.py", list(winner))
+	if (!printedresults)
+		next_map_title = winner
+		winner = uppertext(winner)
+		if (!maps.Find(winner))
+			winner = maps[1]
+		// there used to be messages here about success and failure but they lie so they're gone - Kachnov
+		!processes.python.execute("mapswap.py", list(winner))
+	printedresults = TRUE
